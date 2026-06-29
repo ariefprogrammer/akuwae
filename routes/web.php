@@ -31,27 +31,22 @@ use App\Livewire\Tenant\WorkingBalance as TenantWorkingBalance;
 
 use App\Http\Controllers\Api\RouteController;
 
-Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route(match(auth()->user()->role) {
-            'customer' => 'customer.dashboard',
-            'driver'   => 'driver.dashboard',
-            'tenant'   => 'tenant.dashboard',
-            default    => 'login',
-        });
-    }
-
-    return redirect()->route('login');
-});
-
-// ========== GUEST ROUTES (belum login) ==========
 Route::middleware('guest')->group(function () {
-    Route::get('/login', LoginForm::class)->name('login');
+    Route::get('/', LoginForm::class)->name('login');
     Route::get('/register', RegisterForm::class)->name('register');
 });
 
 // ========== AUTHENTICATED ROUTES ==========
 Route::middleware('auth')->group(function () {
+
+    Route::get('/home', function () {
+        return match(auth()->user()->role) {
+            'customer' => redirect()->route('customer.dashboard'),
+            'tenant'   => redirect()->route('tenant.dashboard'),
+            'driver'   => redirect()->route('driver.dashboard'),
+            default    => redirect()->route('login'),
+        };
+    })->name('home');
 
     Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
     // TEMPORARY: hapus setelah ada tombol logout di UI
