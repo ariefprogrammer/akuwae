@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tolong-app-v1';
+const CACHE_NAME = 'akuwae-app-v1';
 
 self.addEventListener('install', (event) => {
     console.log('[SW] Installed');
@@ -17,10 +17,10 @@ self.addEventListener('push', (event) => {
     try {
         data = event.data.json();
     } catch (e) {
-        data = { title: 'ToLong', body: event.data?.text() || 'Ada notifikasi baru' };
+        data = { title: 'Akuwae', body: event.data?.text() || 'Ada notifikasi baru' };
     }
 
-    const title = data.title || 'ToLong';
+    const title = data.title || 'Akuwae';
     const options = {
         body: data.body || '',
         icon: data.icon || '/images/icons/icon-192x192.png',
