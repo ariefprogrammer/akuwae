@@ -16,7 +16,7 @@
         }
     ],
     "orientation": "any",
-    "display": "fullscreen",
+    "display": "standalone",
     "dir": "auto",
     "lang": "id",
     "name": "Aku Wae",
