@@ -1,30 +1,28 @@
 {
-    "theme_color":"#B01808",
-    "background_color":"#2EC6FE",
-    "icons":
-        [
-            {
-            "purpose":"maskable",
-            "sizes":"512x512",
-            "src":"icon512_maskable.png",
-            "type":"image/png"
-            },
-            {
-            "purpose":"any",
-            "sizes":"512x512",
-            "src":"icon512_rounded.png",
-            "type":"image/png"
-            }
-        ],
-        
-    "orientation":"any",
-    "display":"standalone",
-    "dir":"auto",
-    "lang":"en-US",
-    "name":"Aku Wae",
-    "short_name":"Aku Wae",
-    "start_url":"https://akuwae.com",
-    "scope":"https://akuwae.com",
-    "description":"Aku Wae adalah aplikasi layanan on demand yang membantu masyarakat",
-    "id":"https://akuwae.com"
+    "theme_color": "#B01808",
+    "background_color": "#B01808",
+    "icons": [
+        {
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "/icon512_maskable.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "/icon512_rounded.png",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "any",
+    "display": "standalone",
+    "dir": "auto",
+    "lang": "id",
+    "name": "Aku Wae",
+    "short_name": "Aku Wae",
+    "start_url": "/",
+    "scope": "/",
+    "description": "Aku Wae adalah aplikasi layanan on demand yang membantu masyarakat",
+    "id": "/"
 }
