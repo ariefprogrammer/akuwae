@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <title>Aku Wae Super App</title>
@@ -208,5 +209,18 @@
 </div>
 
 @livewireScripts
+
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => {
+                    console.log('[SW] Registered:', reg.scope);
+                    initPushNotification(reg);
+                })
+                .catch(err => console.error('[SW] Registration failed:', err));
+        });
+    }
+</script>
 </body>
 </html>
