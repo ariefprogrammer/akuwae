@@ -260,7 +260,7 @@
                             Livewire.dispatch('incoming-order', [data]);
                         });
 
-                    const driverId = '{{ auth()->user()->driver->id }}';
+                    const driverId = '{{ auth()->user()->driver?->id ?? '' }}';
 
                     // Listen notif khusus driver ini
                     window.Echo.private('driver.' + driverId)
