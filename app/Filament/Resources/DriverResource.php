@@ -142,7 +142,7 @@ class DriverResource extends Resource
                     ->label('Approve')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
-                    ->visible(fn (Driver $record) => $record->verification_status !== 'approved')
+                    ->visible(fn (Driver $record) => $record->verification_status === 'pending')
                     ->requiresConfirmation()
                     ->modalHeading('Approve Driver')
                     ->modalDescription('Yakin ingin menyetujui driver ini?')
@@ -152,7 +152,7 @@ class DriverResource extends Resource
                     ->label('Reject')
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')
-                    ->visible(fn (Driver $record) => $record->verification_status !== 'rejected')
+                    ->visible(fn (Driver $record) => $record->verification_status === 'pending')
                     ->requiresConfirmation()
                     ->modalHeading('Reject Driver')
                     ->modalDescription('Yakin ingin menolak driver ini?')
@@ -203,6 +203,29 @@ class DriverResource extends Resource
                         Infolists\Components\TextEntry::make('created_at')
                             ->label('Terdaftar Pada')
                             ->dateTime('d M Y H:i'),
+                    ])
+                    ->columns(2),
+
+                Infolists\Components\Section::make('Dokumen Driver')
+                    ->description('Dokumen identitas yang diunggah driver saat onboarding')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('document.ktp_number')
+                            ->label('Nomor KTP')
+                            ->placeholder('Belum diisi'),
+
+                        Infolists\Components\TextEntry::make('document.sim_number')
+                            ->label('Nomor SIM')
+                            ->placeholder('Belum diisi'),
+
+                        Infolists\Components\ImageEntry::make('document.stnk_photo')
+                            ->label('Foto STNK')
+                            ->height(200)
+                            ->placeholder('Belum diunggah'),
+
+                        Infolists\Components\ImageEntry::make('document.selfie_ktp_photo')
+                            ->label('Foto Selfie + KTP')
+                            ->height(200)
+                            ->placeholder('Belum diunggah'),
                     ])
                     ->columns(2),
 

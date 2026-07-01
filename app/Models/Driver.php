@@ -36,8 +36,8 @@ class Driver extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
-    public function documents()
+
+    public function document()
     {
         return $this->hasOne(DriverDocument::class, 'driver_id', 'id');
     }
