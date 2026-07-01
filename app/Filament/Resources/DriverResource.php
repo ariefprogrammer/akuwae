@@ -137,6 +137,27 @@ class DriverResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+
+                Tables\Actions\Action::make('approve')
+                    ->label('Approve')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->visible(fn (Driver $record) => $record->verification_status !== 'approved')
+                    ->requiresConfirmation()
+                    ->modalHeading('Approve Driver')
+                    ->modalDescription('Yakin ingin menyetujui driver ini?')
+                    ->action(fn (Driver $record) => $record->update(['verification_status' => 'approved'])),
+
+                Tables\Actions\Action::make('reject')
+                    ->label('Reject')
+                    ->icon('heroicon-o-x-circle')
+                    ->color('danger')
+                    ->visible(fn (Driver $record) => $record->verification_status !== 'rejected')
+                    ->requiresConfirmation()
+                    ->modalHeading('Reject Driver')
+                    ->modalDescription('Yakin ingin menolak driver ini?')
+                    ->action(fn (Driver $record) => $record->update(['verification_status' => 'rejected'])),
+
                 Tables\Actions\DeleteAction::make(),
             ]);
     }
